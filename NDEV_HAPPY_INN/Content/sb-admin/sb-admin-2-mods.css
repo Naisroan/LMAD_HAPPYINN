@@ -1,0 +1,10 @@
+﻿.bg-gradient-primary {
+    background-color: #000000;
+    background-image: radial-gradient(#251a00 10%,#1b1700 100%);
+    background-size: cover;
+}
+
+footer.sticky-footer {
+    padding: 1rem 0;
+    flex-shrink: 0;
+}

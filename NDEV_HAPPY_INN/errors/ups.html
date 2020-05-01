@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ups! - Happy Inn</title>
+    <link href="../Content/bs/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+</head>
+<body class="error-500">
+    <div class="wrapper">
+        <div class="jumbotron jumbotron-fluid bg-transparent mt-5 mb-0 py-0">
+            <div class="container">
+                <h1 class="title-error">Ups! ha ocurrido un error</h1>
+                <p class="lead">No estabamos preparados para este error, se guardo un registro de este para posteriormente analizarlo, disculpe las molestias.</p>
+                <p class="lead mb-0"><small><i class="fas fa-circle-notch fa-fw fa-spin mr-1"></i>Se le redireccionará en breve...</small></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = () => { setTimeout(() => { window.location = "/auth"; }, 15e3); };
+    </script>
+
+    <script src="https://kit.fontawesome.com/d55ff1d783.js" crossorigin="anonymous"></script>
+    <script src="../Scripts/jquery/jquery-3.4.1.min.js"></script>
+    <script src="../Scripts/bs/popper.min.js"></script>
+    <script src="../Scripts/bs/bootstrap.min.js"></script>
+</body>
+</html>

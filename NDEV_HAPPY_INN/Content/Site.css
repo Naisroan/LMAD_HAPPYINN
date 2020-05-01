@@ -1,0 +1,9 @@
+﻿:root {
+    --bg-primary: #a59200;
+    --bg-primary-hover: #655900;
+}
+
+html {
+    font-family: Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-weight: 300;
+}
