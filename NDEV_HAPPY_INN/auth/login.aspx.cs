@@ -47,7 +47,7 @@ namespace NDEV_HAPPY_INN
                 // establecemos la variable global del UsuarioLogeado [obtiene el usuario guardado en Session]
                 UsuarioLogeado = usuario;
 
-                FormsAuthentication.RedirectFromLoginPage(usuario.name, chkMantenerSesion.Checked);
+                FormsAuthentication.RedirectFromLoginPage(usuario.nick, chkMantenerSesion.Checked);
             }
             catch (Exception ex)
             {

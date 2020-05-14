@@ -7,3 +7,8 @@ html {
     font-family: Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: 300;
 }
+
+.modal {
+    background-color: rgba(12, 10, 0, 0.8);
+    transition: 0.3s;
+}

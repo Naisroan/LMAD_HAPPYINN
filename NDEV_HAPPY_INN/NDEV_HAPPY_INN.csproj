@@ -206,12 +206,19 @@
     <Content Include="Content\images\logos\emp_logo.png" />
     <Content Include="Content\images\logos\emp_logo_b.png" />
     <Content Include="Content\images\logos\emp_logo_n.png" />
+    <Content Include="Content\images\user.png" />
     <Content Include="Content\login\login.css" />
     <Content Include="Content\login\login.js" />
+    <Content Include="Content\mods\home\home.css" />
+    <Content Include="Content\mods\home\home.js" />
+    <Content Include="Content\mods\usuarios\usuarios.css" />
+    <Content Include="Content\mods\usuarios\usuarios.js" />
     <Content Include="Content\sb-admin\sb-admin-2-mods.css" />
     <Content Include="Content\sb-admin\sb-admin-2.min.css" />
     <Content Include="Content\sb-admin\sb-admin-2.min.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\tables\table.css" />
+    <Content Include="Content\tables\table.js" />
     <Content Include="errors\page_not_found.html" />
     <Content Include="errors\unauth_access.html" />
     <Content Include="errors\ups.html" />
@@ -219,6 +226,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\bs\bootstrap.min.css.map" />
     <Content Include="auth\login.aspx" />
+    <Content Include="mods\usuarios.aspx" />
     <Content Include="Scripts\bs\bootstrap.min.css.map" />
     <Content Include="Scripts\bs\bootstrap.min.js.map" />
     <Content Include="Scripts\bs\popper.min.js.map" />
@@ -310,6 +318,7 @@
     <Compile Include="auth\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Ciudad.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="mods\home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -317,6 +326,13 @@
     </Compile>
     <Compile Include="mods\home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mods\usuarios.aspx.cs">
+      <DependentUpon>usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mods\usuarios.aspx.designer.cs">
+      <DependentUpon>usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

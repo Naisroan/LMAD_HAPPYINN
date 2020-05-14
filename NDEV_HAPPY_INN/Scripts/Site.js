@@ -25,17 +25,17 @@
 const IsNill = l => (null === l || undefined === l);
 
 /**
- * Función para mostrar un mensaje modal, usa SweetAlert versión 1.0, y la clase Msg es quien utiliza esta función
+ * Función para mostrar un mensaje modal, usa SweetAlert versión 1.0, y la clase Msg.cs es quien utiliza esta función
  * @param {any} l
  * @param {any} n
  * @param {any} o
  * @param {any} t
  * @param {any} i
  */
-const MsjModal = (l, n, o, t, i) => { if (swal({ title: l, text: n, icon: t, button: o, closeOnClickOutside: !1 }), null != i && null != i && "" != i) { var c = $(".swal-button--confirm"); null != c && null != c && $(".swal-button--confirm").on("click", () => { window.location = resolveUrl(i); }) } };
+const MsjModal = (l, n, o, t, i) => { if (swal({ title: l, text: n, icon: t, button: o, closeOnClickOutside: !1 }), null != i && null != i && "" != i) { var c = $(".swal-button--confirm"); null != c && null != c && $(".swal-button--confirm").on("click", () => { window.location = i; }) } };
 
 /**
- * Función para mostrar un mensaje modal en una ventana modal, usa SweetAlert versión 1.0, y la clase Msg es quien utiliza esta función
+ * Función para mostrar un mensaje modal en una ventana modal, usa SweetAlert versión 1.0, y la clase Msg.cs es quien utiliza esta función
  * @param {any} id
  * @param {any} l
  * @param {any} n

@@ -3,6 +3,7 @@ using System.IO;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using NDEV_HAPPY_INN.Model;
 
 namespace NDEV_HAPPY_INN
@@ -33,7 +34,10 @@ namespace NDEV_HAPPY_INN
                 var userSession = cntx.Session["UsuarioActual"];
 
                 if (userSession == null)
-                    cntx.Session["UsuarioActual"] = new UsuarioMap().Read(cntx.User.Identity.Name);
+                {
+                    return null;
+                    // cntx.Session["UsuarioActual"] = new UsuarioMap().Read(cntx.User.Identity.Name);
+                }
 
                 return (Usuario)cntx.Session["UsuarioActual"];
             }
@@ -94,6 +98,12 @@ namespace NDEV_HAPPY_INN
         #endregion
 
         #region "METODOS"
+
+        public void HideLoad(UpdatePanel upPage, Panel pnlLoad, bool hide = true)
+        {
+            upPage.Visible = hide;
+            pnlLoad.Visible = !hide;
+        }
 
         #endregion
     }

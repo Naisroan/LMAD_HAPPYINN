@@ -15,13 +15,13 @@ namespace NDEV_HAPPY_INN
     {
 
         /// <summary>
-        /// Control upMaster.
+        /// Control cph_styles.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upMaster;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph_styles;
 
         /// <summary>
         /// Control hlLogo.
@@ -67,5 +67,14 @@ namespace NDEV_HAPPY_INN
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder cph_body;
+
+        /// <summary>
+        /// Control cph_scripts.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cph_scripts;
     }
 }

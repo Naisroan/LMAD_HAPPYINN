@@ -17,7 +17,7 @@ namespace NDEV_HAPPY_INN
                     return;
                 }
 
-                if (UsuarioLogeado.is_admin)
+                if (UsuarioLogeado.is_admin.GetValueOrDefault(false))
                 {
                     Response.Redirect("~/mods/home.aspx");
                 }

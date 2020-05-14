@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Threading.Tasks;
 using Cassandra;
 using Cassandra.Mapping;
+using NDEV_HAPPY_INN.Model;
 
 public class Connection
 {
@@ -32,6 +33,7 @@ public class Connection
             }
 
             Connect();
+            Configure();
         }
         catch (Exception ex)
         {
@@ -44,5 +46,10 @@ public class Connection
         Cluster cluster = Cluster.Builder().AddContactPoint(ClusterName).Build();
         Session = cluster.Connect(KeySpaceName);
         Mapper = new Mapper(Session);
+    }
+
+    private void Configure()
+    {
+        Session.UserDefinedTypes.Define(UdtMap.For<Ciudad>());
     }
 }

@@ -1,0 +1,73 @@
+﻿.text-uppercase {
+    font-variant-caps: all-petite-caps;
+}
+
+.table,
+.table tbody {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table td {
+    vertical-align: middle !important;
+}
+
+.table .text-uppercase th {
+    font-weight: normal !important;
+}
+
+.table tr:not(:first-child) {
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.table tr:not(:first-child):not(.table-pagging):hover {
+    background-color: aliceblue;
+}
+
+    .table .table-pagging > td > table > tbody > tr:first-child {
+        display: -ms-flexbox;
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+        border-radius: .25rem;
+    }
+
+        .table .table-pagging > td > table > tbody > tr:first-child td {
+            border: none !important;
+            padding: 0 !important;
+        }
+
+            .table .table-pagging > td > table > tbody > tr:first-child td a,
+            .table .table-pagging > td > table > tbody > tr:first-child td span {
+                position: relative;
+                display: block;
+                padding: 0.5rem 0.75rem;
+                line-height: 1;
+                color: rgba(0, 93, 128, 1);
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                margin: 10px 0px 0px 5px;
+            }
+
+            .table .table-pagging > td > table > tbody > tr:first-child td span {
+                background-color: var(--bg-primary);
+                border: 1px solid rgba(0, 0, 0, 0);
+                color: white;
+                cursor: default !important;
+                transition-duration: 0.1s;
+            }
+
+                .table .table-pagging > td > table > tbody > tr:first-child td a:not(:disabled):not(.disabled),
+                .table .table-pagging > td > table > tbody > tr:first-child td span:not(:disabled):not(.disabled) {
+                    cursor: pointer;
+                }
+
+            .table .table-pagging > td > table > tbody > tr:first-child td a:hover {
+                color: #1c669c;
+                text-decoration: none;
+                background-color: #e9ecef;
+                border-color: #ddd;
+                outline: 0;
+            }
