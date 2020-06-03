@@ -10,6 +10,12 @@ namespace NDEV_HAPPY_INN
 {
     public class HappyInnPage : Page
     {
+        #region "CONSTANTES"
+
+        public const string NAME_SESSION_USUARIO_LOGEADO = "usuario_logeado";
+
+        #endregion
+
         #region "ATRIBUTOS"
 
         protected static readonly string UrlLogin = $"~{FormsAuthentication.LoginUrl}";
@@ -31,18 +37,33 @@ namespace NDEV_HAPPY_INN
                 if (!cntx.User.Identity.IsAuthenticated)
                     return null;
 
-                var userSession = cntx.Session["UsuarioActual"];
+                var nickUsuario = cntx.User.Identity.Name;
 
-                if (userSession == null)
+                if (nickUsuario == null)
                 {
+                    Sys.SignOut(cntx, true);
                     return null;
-                    // cntx.Session["UsuarioActual"] = new UsuarioMap().Read(cntx.User.Identity.Name);
                 }
 
-                return (Usuario)cntx.Session["UsuarioActual"];
+                var usuarioLogeado = cntx.Session[NAME_SESSION_USUARIO_LOGEADO];
+
+                if (usuarioLogeado == null)
+                {
+                    usuarioLogeado = UsuarioMap.Read(nickUsuario);
+
+                    if (usuarioLogeado == null)
+                    {
+                        Sys.SignOut(cntx, true);
+                        return null;
+                    }
+
+                    cntx.Session[NAME_SESSION_USUARIO_LOGEADO] = (Usuario)usuarioLogeado;
+                }
+
+                return (Usuario)usuarioLogeado;
             }
 
-            set => HttpContext.Current.Session["UsuarioActual"] = value;
+            set => HttpContext.Current.Session[NAME_SESSION_USUARIO_LOGEADO] = value;
         }
 
         #endregion
@@ -70,15 +91,6 @@ namespace NDEV_HAPPY_INN
                     // AUTENTICADO
                     else
                     {
-                        // NO EXISTE EL USUARIO Y ESTA AUTENTICADO (WHAT ?)
-                        // NO SE SI ESTO PUEDE LLEGAR A PASAR PERO POR SI LAS MOSCAS
-                        if (UsuarioLogeado == null)
-                        {
-                            // CIERRA SESION Y MANDA A LOGIN
-                            Sys.SignOut(HttpContext.Current);
-                            return;
-                        }
-
                         // VERIFICA QUE NO SEA LA URL DE LOGIN  O DE AUTH O DEFAULT
                         if (!AppRelativeVirtualPath.Equals(UrlLogin) &&
                             !AppRelativeVirtualPath.Equals(UrlDefault) &&
@@ -86,6 +98,9 @@ namespace NDEV_HAPPY_INN
                         {
                             string NameFilePage = Path.GetFileName(Request.Path);
                         }
+
+                        // cancela las reservaciones si el cliente no ha llegado para su fecha inicial de reservación
+                        ReservacionMap.EstablecerCheckInAutomatico(DateTime.Now);
                     }
                 }
                 catch (Exception ex)

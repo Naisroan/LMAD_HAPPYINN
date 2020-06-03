@@ -4,4 +4,6 @@ $(document).ready(function () {
 
 // al cargarse cada vez (incluyendo los update panel)
 Sys.Application.add_load(function () {
+
+    $('.selectpicker').selectpicker();
 });

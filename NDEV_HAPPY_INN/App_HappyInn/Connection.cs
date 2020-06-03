@@ -13,10 +13,11 @@ public class Connection
     private static string ClusterName;
     private static string KeySpaceName;
 
-    private ISession Session;
-    private IMapper Mapper;
+    private static Cluster Cluster;
+    private static ISession Session;
+    private static IMapper Mapper;
 
-    public IMapper GetMapper() => Mapper;
+    public static IMapper GetMapper() => Mapper;
 
     public Connection()
     {
@@ -32,8 +33,38 @@ public class Connection
                 KeySpaceName = ConfigurationManager.AppSettings[APP_SETTING_NAME_KS].ToString();
             }
 
-            Connect();
-            Configure();
+            if (Session == null)
+            {
+                Connect();
+                Configure();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new ConnectionCassandraException(ex.Message, ex);
+        }
+    }
+
+    private void Connect()
+    {
+        try
+        {
+            Cluster = Cluster.Builder().AddContactPoint(ClusterName).Build();
+            Session = Cluster.Connect(KeySpaceName);
+            Mapper = new Mapper(Session);
+        }
+        catch (ConnectionCassandraException ex)
+        {
+            throw ex;
+        }
+    }
+
+    private void Configure()
+    {
+        try
+        {
+            Session.UserDefinedTypes.Define(UdtMap.For<UDT_Ciudad>());
+            // Session.UserDefinedTypes.Define(UdtMap.For<UDT_Habitacion>());
         }
         catch (Exception ex)
         {
@@ -41,15 +72,16 @@ public class Connection
         }
     }
 
-    private void Connect()
+    public bool IsConnected()
     {
-        Cluster cluster = Cluster.Builder().AddContactPoint(ClusterName).Build();
-        Session = cluster.Connect(KeySpaceName);
-        Mapper = new Mapper(Session);
+        return Session != null;
     }
+}
 
-    private void Configure()
+public class ConnectionCassandraException : Exception
+{
+    public ConnectionCassandraException(string message, Exception innerException)
+        : base(message, innerException)
     {
-        Session.UserDefinedTypes.Define(UdtMap.For<Ciudad>());
     }
 }

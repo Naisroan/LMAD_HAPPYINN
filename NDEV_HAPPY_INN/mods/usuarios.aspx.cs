@@ -19,8 +19,6 @@ namespace NDEV_HAPPY_INN.mods
 
         #region "ATRIBUTOS"
 
-        private UsuarioMap Map => new UsuarioMap();
-
         private List<Usuario> Lista
         {
             get => (List<Usuario>)Session["Lista"];
@@ -33,7 +31,7 @@ namespace NDEV_HAPPY_INN.mods
         {
             if (!IsPostBack)
             {
-                Lista = (await Map.ReadAllAsync()).ToList();
+                Lista = (await UsuarioMap.ReadAllAsync()).ToList();
             }
 
             Sys.FillGridView(gvData, Lista);
@@ -45,7 +43,7 @@ namespace NDEV_HAPPY_INN.mods
         {
             try
             {
-                Lista = (await Map.ReadAllAsync()).ToList();
+                Lista = (await UsuarioMap.ReadAllAsync()).ToList();
                 Sys.FillGridView(gvData, Lista);
                 upGridView.Update();
             }
@@ -82,12 +80,12 @@ namespace NDEV_HAPPY_INN.mods
                 if (nuevo)
                 {
                     nodo = LlenarNodo();
-                    await Map.Create(nodo);
+                    await UsuarioMap.Create(nodo);
                 }
                 else
                 {
-                    nodo = LlenarNodo(Map.Read(hfId.Value));
-                    await Map.Update(nodo);
+                    nodo = LlenarNodo(UsuarioMap.Read(hfId.Value));
+                    await UsuarioMap.Update(nodo);
                 }
 
                 Msg.Show(this, Msg.CaptionFinalizado, "Se ha guardado el registro", 
@@ -109,7 +107,7 @@ namespace NDEV_HAPPY_INN.mods
                     return;
                 }
 
-                await Map.Delete(await Map.ReadAsync(hfId.Value));
+                await UsuarioMap.Delete(await UsuarioMap.ReadAsync(hfId.Value));
 
                 Msg.Show(this, Msg.CaptionFinalizado, "Se ha eliminado el registro",
                     Msg.Tipo.Success, Msg.BotonFinalizado, HttpContext.Current.Request.Url.AbsolutePath);
@@ -171,7 +169,7 @@ namespace NDEV_HAPPY_INN.mods
                 if (string.IsNullOrEmpty(dataKey))
                     return;
 
-                Usuario registroSeleccionado = Map.Read(dataKey);
+                Usuario registroSeleccionado = UsuarioMap.Read(dataKey);
 
                 if (registroSeleccionado == null)
                     return;

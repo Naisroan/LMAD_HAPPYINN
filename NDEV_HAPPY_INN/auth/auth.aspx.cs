@@ -1,30 +1,17 @@
-﻿using System;
+﻿using NDEV_HAPPY_INN.Model;
+using System;
 using System.Web;
+using System.Web.UI;
 
 namespace NDEV_HAPPY_INN
 {
     public partial class auth : HappyInnPage
     {
-        protected override void Page_PreInit(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                // base.Page_PreInit(sender, e);
-
-                if (UsuarioLogeado == null)
-                {
-                    Sys.SignOut(HttpContext.Current);
-                    return;
-                }
-
-                if (UsuarioLogeado.is_admin.GetValueOrDefault(false))
-                {
-                    Response.Redirect("~/mods/home.aspx");
-                }
-                else
-                {
-                    Response.Redirect("~/mods/home.aspx");
-                }
+                Response.Redirect("~/mods/home.aspx", true);
             }
             catch (Exception ex)
             {

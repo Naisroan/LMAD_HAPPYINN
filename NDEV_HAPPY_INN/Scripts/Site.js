@@ -57,3 +57,11 @@ const onButtonLoading = (n, s = "") => { var r = $(n); !r.hasClass('aspNetDisabl
  * @param {any} show
  */
 const MostrarModal = (id, show) => { if (show) { $('#' + id).modal({ show: true, keyboard: false, backdrop: false }); } else { $('#' + id).modal('hide'); } }
+
+/**
+ * Abre una ventana
+ * @param {any} url
+ */
+function openUrl(url) {
+    window.open(url);
+}

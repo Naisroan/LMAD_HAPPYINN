@@ -22,7 +22,7 @@ namespace NDEV_HAPPY_INN
                 var userSession = cntx.Session["UsuarioActual"];
 
                 if (userSession == null)
-                    cntx.Session["UsuarioActual"] = new UsuarioMap().Read(cntx.User.Identity.Name);
+                    cntx.Session["UsuarioActual"] = UsuarioMap.Read(cntx.User.Identity.Name);
 
                 return (Usuario)cntx.Session["UsuarioActual"];
             }
@@ -39,7 +39,7 @@ namespace NDEV_HAPPY_INN
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            Sys.SignOut(HttpContext.Current);
+            Sys.SignOut(HttpContext.Current, true);
         }
 
         #endregion

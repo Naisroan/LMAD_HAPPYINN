@@ -30,15 +30,13 @@ namespace NDEV_HAPPY_INN.Model
         public string tel_casa { get; set; }
 
         public string tel_celular { get; set; }
-    
-        public List<Ciudad> ciudades_asignadas { get; set; }
     }
 
     public class UsuarioMap : Connection
     {
         private const string CQL_QUERY_WHERE_NAME = "WHERE nick = ?";
 
-        public async Task Create(Usuario nodo)
+        public static async Task Create(Usuario nodo)
         {
             try
             {
@@ -57,7 +55,7 @@ namespace NDEV_HAPPY_INN.Model
             }
         }
 
-        public async Task Update(Usuario nodo)
+        public static async Task Update(Usuario nodo)
         {
             try
             {
@@ -69,10 +67,18 @@ namespace NDEV_HAPPY_INN.Model
             }
         }
 
-        public async Task Delete(Usuario nodo)
+        public static async Task Delete(Usuario nodo)
         {
             try
             {
+                List<Reservacion> reservacionesUsuario = 
+                    (await ReservacionMap.ReadAllByUsuarioAsync(nodo.nick)).ToList();
+
+                if (reservacionesUsuario.Count > 0)
+                {
+                    throw new Exception("El usuario está siendo utilizado en otros registros, no se puede eliminar");
+                }
+
                 await GetMapper().DeleteAsync(nodo);
             }
             catch (Exception ex)
@@ -81,7 +87,7 @@ namespace NDEV_HAPPY_INN.Model
             }
         }
 
-        public Usuario Read(string nick)
+        public static Usuario Read(string nick)
         {
             try
             {
@@ -93,7 +99,7 @@ namespace NDEV_HAPPY_INN.Model
             }
         }
 
-        public async Task<Usuario> ReadAsync(string nick)
+        public static async Task<Usuario> ReadAsync(string nick)
         {
             try
             {
@@ -105,7 +111,7 @@ namespace NDEV_HAPPY_INN.Model
             }
         }
 
-        public async Task<IEnumerable<Usuario>> ReadAllAsync()
+        public static async Task<IEnumerable<Usuario>> ReadAllAsync()
         {
             try
             {
@@ -117,7 +123,19 @@ namespace NDEV_HAPPY_INN.Model
             }
         }
 
-        private async Task<int> MaxNomina()
+        public static IEnumerable<Usuario> ReadAll()
+        {
+            try
+            {
+                return GetMapper().Fetch<Usuario>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private static async Task<int> MaxNomina()
         {
             try
             {
@@ -134,7 +152,7 @@ namespace NDEV_HAPPY_INN.Model
             }
         }
 
-        public async Task<bool> Existe(string nick)
+        public static async Task<bool> Existe(string nick)
         {
             try
             {
@@ -144,6 +162,11 @@ namespace NDEV_HAPPY_INN.Model
             {
                 throw ex;
             }
+        }
+
+        public static string ObtenerClaveAdmin()
+        {
+            return Read("admin").password;
         }
     }
 }

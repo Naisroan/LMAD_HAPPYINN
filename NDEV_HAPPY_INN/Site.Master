@@ -93,7 +93,35 @@
                     Interfaz
                 </div>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="<%: ResolveUrl("~/mods/clientes.aspx") %>">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>Clientes</span>
+                    </a>
+                </li>
+
                 <% if (UsuarioLogeado.is_admin.GetValueOrDefault(false)) { %>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<%: ResolveUrl("~/mods/reservaciones.aspx") %>">
+                        <i class="fas fa-fw fa-clipboard-list"></i>
+                        <span>Historial de Reservaciones</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<%: ResolveUrl("~/mods/hoteles.aspx") %>">
+                        <i class="fas fa-fw fa-hotel"></i>
+                        <span>Hoteles</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<%: ResolveUrl("~/mods/habitaciones.aspx") %>">
+                        <i class="fas fa-fw fa-person-booth"></i>
+                        <span>Habitaciones</span>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="<%: ResolveUrl("~/mods/usuarios.aspx") %>">
@@ -103,34 +131,21 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="<%: ResolveUrl("~/mods/home.aspx") %>">
-                        <i class="fas fa-fw fa-hotel"></i>
-                        <span>Hoteles</span>
+                    <a class="nav-link collapsed" href="!#" data-toggle="collapse" data-target="#menu-catalogos" aria-expanded="true" aria-controls="menu-catalogos">
+                        <i class="fas fa-fw fa-database"></i>
+                        <span>Catálogos</span>
                     </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="<%: ResolveUrl("~/mods/home.aspx") %>">
-                        <i class="fas fa-fw fa-person-booth"></i>
-                        <span>Habitaciones</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="<%: ResolveUrl("~/mods/home.aspx") %>">
-                        <i class="fas fa-fw fa-map-marker-alt"></i>
-                        <span>Ciudades</span>
-                    </a>
+                    <div id="menu-catalogos" class="collapse" aria-labelledby="headingcatalogos" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Catálogos:</h6>
+                            <a class="collapse-item" href="<%: ResolveUrl("~/mods/cats/ciudades.aspx") %>">Ciudades</a>
+                            <a class="collapse-item" href="<%: ResolveUrl("~/mods/cats/caracteristicas.aspx") %>">Características</a>
+                            <a class="collapse-item" href="<%: ResolveUrl("~/mods/cats/servicios_extras.aspx") %>">Servicios extra</a>
+                        </div>
+                    </div>
                 </li>
 
                 <% } %>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="<%: ResolveUrl("~/mods/home.aspx") %>">
-                        <i class="fas fa-fw fa-clipboard-list"></i>
-                        <span>Reservaciones</span>
-                    </a>
-                </li>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="NDEV_HAPPY_INN.login" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="NDEV_HAPPY_INN.login" Async="true" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -99,6 +99,7 @@
                         runat="server"
                         CssClass="btn btn-primary btn-block"
                         Text="Entrar"
+                        Enabled="false"
                         OnClick="btnIniciarSesion_Click"
                         OnClientClick="onButtonLoading(this, 'Entrando')"
                     />

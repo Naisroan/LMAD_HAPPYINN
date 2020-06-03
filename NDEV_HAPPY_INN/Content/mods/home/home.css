@@ -1,2 +1,16 @@
-﻿body {
+﻿.dropdown.bootstrap-select {
+    width: 100% !important;
+}
+
+.list-group.list-group-horizontal-sm .list-group-item {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.list-group.list-group-horizontal-sm .list-group-item {
+    color: dimgray !important;
+}
+
+span.total.d-block {
+    font-size: 2.3rem;
 }

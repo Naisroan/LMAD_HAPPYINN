@@ -107,6 +107,7 @@
 
                     </div>
 
+                    <%--
                     <div class="d-flex mb-4">
                     
                         <div class="tipo-filtro d-inline-flex align-items-center mr-2">
@@ -139,6 +140,7 @@
                         </div>
 
                     </div>
+                    --%>
 
                 </ContentTemplate>
                 <Triggers>
@@ -230,7 +232,7 @@
             >
                 <ContentTemplate>
                 
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="label_form">
@@ -249,59 +251,86 @@
                                     Value="-1" 
                                 />
 
-                                <div class="form-group">
-                                    <label>Usuario</label>
-                                    <asp:TextBox
-                                        ID="txtNick"
-                                        runat="server"
-                                        CssClass="form-control"
-                                        placeholder="Ingrese el nick del usuario" />
+                                <div class="form-row">
+                                    <div class="col-12 col-lg-6 mb-3">
+                                        <label>Usuario</label>
+                                        <asp:TextBox
+                                            ID="txtNick"
+                                            runat="server"
+                                            CssClass="form-control"
+                                            placeholder="Ingrese el nick del usuario" />
+
+                                    </div>
+                                    <div class="col-12 col-lg-6 mb-3">
+                                        <label>Contraseña</label>
+                                        <asp:TextBox
+                                            ID="txtPassword"
+                                            runat="server"
+                                            CssClass="form-control"
+                                            TextMode="Password"
+                                            placeholder="Ingrese la contraseña" />
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Contraseña</label>
-                                    <asp:TextBox
-                                        ID="txtPassword"
-                                        runat="server"
-                                        CssClass="form-control"
-                                        TextMode="Password"
-                                        placeholder="Ingrese la contraseña" />
+                                
+                                <div class="form-row">
+                                    
+                                    <div class="col-12 col-lg-4 mb-3">
+                                        <label>Nombre</label>
+                                        <asp:TextBox
+                                            ID="txtNombre"
+                                            runat="server"
+                                            CssClass="form-control"
+                                            placeholder="Ingrese el o los nombres" />
+                                    </div>
+                                    
+                                    <div class="col-12 col-lg-4 mb-3">
+                                        <label>Apellido paterno</label>
+                                        <asp:TextBox
+                                            ID="txtApPaterno"
+                                            runat="server"
+                                            CssClass="form-control"
+                                            placeholder="Ingrese el apellido paterno" />
+                                    </div>
+                                    
+                                    <div class="col-12 col-lg-4 mb-3">
+                                        <label>Apellido materno</label>
+                                        <asp:TextBox
+                                            ID="txtApMaterno"
+                                            runat="server"
+                                            CssClass="form-control"
+                                            placeholder="Ingrese apellido materno" />
+                                    </div>
+
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <asp:TextBox
-                                        ID="txtNombre"
-                                        runat="server"
-                                        CssClass="form-control"
-                                        placeholder="Ingrese el o los nombres" />
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Apellido paterno</label>
-                                    <asp:TextBox
-                                        ID="txtApPaterno"
-                                        runat="server"
-                                        CssClass="form-control"
-                                        placeholder="Ingrese el apellido paterno" />
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Apellido materno</label>
-                                    <asp:TextBox
-                                        ID="txtApMaterno"
-                                        runat="server"
-                                        CssClass="form-control"
-                                        placeholder="Ingrese apellido materno" />
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Fecha de Nacimiento</label>
-                                    <asp:TextBox
-                                        ID="txtFechaNacimiento"
-                                        runat="server"
-                                        CssClass="form-control"
-                                        TextMode="Date" />
+                                <div class="form-row">
+                                    <div class="col-12 col-lg-4 mb-3">
+                                        <label>Fecha de Nacimiento</label>
+                                        <asp:TextBox
+                                            ID="txtFechaNacimiento"
+                                            runat="server"
+                                            CssClass="form-control"
+                                            TextMode="Date" />
+                                    </div>
+                                    <div class="col-12 col-lg-4 mb-3">
+                                        <label>Teléfono de casa</label>
+                                        <asp:TextBox
+                                            ID="txtTelCasa"
+                                            runat="server"
+                                            CssClass="form-control"
+                                            placeholder="Ingrese el teléfono de su casa"
+                                            TextMode="Phone" />
+                                    </div>
+                                    <div class="col-12 col-lg-4 mb-3">
+                                        <label>Teléfono de celular</label>
+                                        <asp:TextBox
+                                            ID="txtTelCelular"
+                                            runat="server"
+                                            CssClass="form-control"
+                                            placeholder="Ingrese el teléfono de su celular"
+                                            TextMode="Phone" />
+                                    </div>
                                 </div>
                                 
                                 <div class="form-group">
@@ -314,26 +343,6 @@
                                         Rows="3"
                                         placeholder="Ingrese el domicilio" />
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label>Teléfono de casa</label>
-                                    <asp:TextBox
-                                        ID="txtTelCasa"
-                                        runat="server"
-                                        CssClass="form-control"
-                                        placeholder="Ingrese el teléfono de su casa"
-                                        TextMode="Phone" />
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Teléfono de celular</label>
-                                    <asp:TextBox
-                                        ID="txtTelCelular"
-                                        runat="server"
-                                        CssClass="form-control"
-                                        placeholder="Ingrese el teléfono de su celular"
-                                        TextMode="Phone" />
-                                </div>
 
                                 <asp:UpdatePanel
                                     ID="upMensajeFormulario"
@@ -344,8 +353,10 @@
                                     <ContentTemplate>
                                         <div class="card bg-danger text-white shadow">
                                             <div class="card-body">
-                                                !Alerta!
-                                                <div class="text-white-50 small">
+                                                <span class="d-block font-weight-bolder">
+                                                    !Alerta!
+                                                </span>
+                                                <div class="text-white small">
                                                     <asp:Label ID="lblMensajeError" runat="server"></asp:Label>
                                                 </div>
                                             </div>

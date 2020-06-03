@@ -194,6 +194,7 @@
   <ItemGroup>
     <Content Include="auth\auth.aspx" />
     <Content Include="Content\bs\bootstrap-mods.css" />
+    <Content Include="Content\bs\bootstrap-select.min.css" />
     <Content Include="Content\bs\bootstrap.min.css" />
     <Content Include="Content\fonts\font-awesome\css\all.min.css" />
     <Content Include="Content\fonts\font-awesome\webfonts\fa-brands-400.svg" />
@@ -209,8 +210,22 @@
     <Content Include="Content\images\user.png" />
     <Content Include="Content\login\login.css" />
     <Content Include="Content\login\login.js" />
+    <Content Include="Content\mods\cats\caracteristicas\caracteristicas.css" />
+    <Content Include="Content\mods\cats\caracteristicas\caracteristicas.js" />
+    <Content Include="Content\mods\cats\servicios_extras\servicios_extras.css" />
+    <Content Include="Content\mods\cats\servicios_extras\servicios_extras.js" />
+    <Content Include="Content\mods\cats\ciudades\ciudades.css" />
+    <Content Include="Content\mods\cats\ciudades\ciudades.js" />
+    <Content Include="Content\mods\clientes\ciudades.css" />
+    <Content Include="Content\mods\clientes\ciudades.js" />
+    <Content Include="Content\mods\habitaciones\habitaciones.css" />
+    <Content Include="Content\mods\habitaciones\habitaciones.js" />
     <Content Include="Content\mods\home\home.css" />
     <Content Include="Content\mods\home\home.js" />
+    <Content Include="Content\mods\hoteles\hoteles.css" />
+    <Content Include="Content\mods\hoteles\hoteles.js" />
+    <Content Include="Content\mods\reservaciones\reservaciones.css" />
+    <Content Include="Content\mods\reservaciones\reservaciones.js" />
     <Content Include="Content\mods\usuarios\usuarios.css" />
     <Content Include="Content\mods\usuarios\usuarios.js" />
     <Content Include="Content\sb-admin\sb-admin-2-mods.css" />
@@ -219,6 +234,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\tables\table.css" />
     <Content Include="Content\tables\table.js" />
+    <Content Include="download.aspx" />
     <Content Include="errors\page_not_found.html" />
     <Content Include="errors\unauth_access.html" />
     <Content Include="errors\ups.html" />
@@ -226,7 +242,15 @@
     <Content Include="Global.asax" />
     <Content Include="Content\bs\bootstrap.min.css.map" />
     <Content Include="auth\login.aspx" />
+    <Content Include="mods\cats\caracteristicas.aspx" />
+    <Content Include="mods\cats\ciudades.aspx" />
+    <Content Include="mods\cats\servicios_extras.aspx" />
+    <Content Include="mods\clientes.aspx" />
+    <Content Include="mods\habitaciones.aspx" />
+    <Content Include="mods\hoteles.aspx" />
+    <Content Include="mods\reservaciones.aspx" />
     <Content Include="mods\usuarios.aspx" />
+    <Content Include="Scripts\bs\bootstrap-select.min.js" />
     <Content Include="Scripts\bs\bootstrap.min.css.map" />
     <Content Include="Scripts\bs\bootstrap.min.js.map" />
     <Content Include="Scripts\bs\popper.min.js.map" />
@@ -250,12 +274,14 @@
     <Content Include="Content\fonts\font-awesome\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\fonts\font-awesome\webfonts\fa-solid-900.woff" />
     <Content Include="Content\fonts\font-awesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\bs\bootstrap-select.css.map" />
     <None Include="mods\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="mods\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Scripts\bs\bootstrap-select.min.js.map" />
     <None Include="Scripts\jquery\jquery-3.4.1.intellisense.js" />
     <Content Include="mods\home.aspx" />
     <Content Include="Scripts\bs\bootstrap.min.js" />
@@ -294,6 +320,7 @@
   <ItemGroup>
     <Compile Include="App_HappyInn\App.cs" />
     <Compile Include="App_HappyInn\Connection.cs" />
+    <Compile Include="App_HappyInn\Descarga.cs" />
     <Compile Include="App_HappyInn\HappyInnPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -308,6 +335,13 @@
     <Compile Include="auth\auth.aspx.designer.cs">
       <DependentUpon>auth.aspx</DependentUpon>
     </Compile>
+    <Compile Include="download.aspx.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="download.aspx.designer.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -318,14 +352,72 @@
     <Compile Include="auth\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Caracteristica.cs" />
     <Compile Include="Model\Ciudad.cs" />
+    <Compile Include="Model\Cliente.cs" />
+    <Compile Include="Model\Habitacion_By_Hotel.cs" />
+    <Compile Include="Model\Hotel.cs" />
+    <Compile Include="Model\Reservacion.cs" />
+    <Compile Include="Model\Usuario_By_Ciudad.cs" />
+    <Compile Include="Model\Tipo_Habitacion.cs" />
+    <Compile Include="Model\UDT\UDT_Ciudad.cs" />
+    <Compile Include="Model\Servicio_Extra.cs" />
     <Compile Include="Model\Usuario.cs" />
+    <Compile Include="mods\cats\caracteristicas.aspx.cs">
+      <DependentUpon>caracteristicas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mods\cats\caracteristicas.aspx.designer.cs">
+      <DependentUpon>caracteristicas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mods\cats\ciudades.aspx.cs">
+      <DependentUpon>ciudades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mods\cats\ciudades.aspx.designer.cs">
+      <DependentUpon>ciudades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mods\cats\servicios_extras.aspx.cs">
+      <DependentUpon>servicios_extras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mods\cats\servicios_extras.aspx.designer.cs">
+      <DependentUpon>servicios_extras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mods\clientes.aspx.cs">
+      <DependentUpon>clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mods\clientes.aspx.designer.cs">
+      <DependentUpon>clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mods\habitaciones.aspx.cs">
+      <DependentUpon>habitaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mods\habitaciones.aspx.designer.cs">
+      <DependentUpon>habitaciones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="mods\home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="mods\home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mods\hoteles.aspx.cs">
+      <DependentUpon>hoteles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mods\hoteles.aspx.designer.cs">
+      <DependentUpon>hoteles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mods\reservaciones.aspx.cs">
+      <DependentUpon>reservaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mods\reservaciones.aspx.designer.cs">
+      <DependentUpon>reservaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="mods\usuarios.aspx.cs">
       <DependentUpon>usuarios.aspx</DependentUpon>

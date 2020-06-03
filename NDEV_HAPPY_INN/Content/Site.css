@@ -1,6 +1,6 @@
 ﻿:root {
-    --bg-primary: #a59200;
-    --bg-primary-hover: #655900;
+    --bg-primary: #00A4EF;
+    --bg-primary-hover: #008aca;
 }
 
 html {
@@ -11,4 +11,8 @@ html {
 .modal {
     background-color: rgba(12, 10, 0, 0.8);
     transition: 0.3s;
+}
+
+.swal-text {
+    text-align: center !important;
 }

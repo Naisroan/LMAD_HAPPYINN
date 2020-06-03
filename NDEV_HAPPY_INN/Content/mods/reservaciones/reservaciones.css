@@ -1,0 +1,23 @@
+﻿.dropdown.bootstrap-select {
+    flex: 1 !important;
+}
+
+    .dropdown.bootstrap-select .btn {
+        border: 1px solid #cccccc;
+    }
+
+.table tr:not(:first-child):not(.table-pagging) td:first-child {
+    border-left: 10px solid #76da70;
+}
+
+    .table tr:not(:first-child):not(.table-pagging) td:first-child.checkinpendiente {
+        border-left: 10px solid #ffd800;
+    }
+
+    .table tr:not(:first-child):not(.table-pagging) td:first-child.checkoutpendiente {
+        border-left: 10px solid #60d9fa;
+    }
+
+    .table tr:not(:first-child):not(.table-pagging) td:first-child.cancelada {
+        border-left: 10px solid #d87171;
+    }

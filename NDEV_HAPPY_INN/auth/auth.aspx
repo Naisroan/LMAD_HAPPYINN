@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="auth.aspx.cs" Inherits="NDEV_HAPPY_INN.auth" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="auth.aspx.cs" Inherits="NDEV_HAPPY_INN.auth" Async="true" %>
 
 <!DOCTYPE html>
 

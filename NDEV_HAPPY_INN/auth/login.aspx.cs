@@ -7,13 +7,40 @@ namespace NDEV_HAPPY_INN
 {
     public partial class login : HappyInnPage
     {
+        #region "CONSTANTES"
+
+        public const string NAME_COOKIE_RECORDAR_USUARIO = "recordar_usuario";
+
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                string message = string.Empty;
+
+                if (!TestConnectionCassandra(ref message))
+                {
+                    Msg.Show(upLogin, "Conexión a Cassandra", message, Msg.Tipo.Warning);
+
+                    return;
+                }
+                else
+                {
+                    btnIniciarSesion.Enabled = true;
+                }
+
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
                     Response.Redirect(UrlDefault);
+                }
+
+                Usuario usuarioCookie = null;
+
+                if (UsuarioRecordadoDeCookie(ref usuarioCookie))
+                {
+                    UsuarioLogeado = usuarioCookie;
+                    FormsAuthentication.RedirectFromLoginPage(usuarioCookie.nick, chkMantenerSesion.Checked);
                 }
             }
         }
@@ -31,7 +58,7 @@ namespace NDEV_HAPPY_INN
                     Msg.Show(this, Msg.CaptionEspera, validationMessage, Msg.Tipo.Warning, Msg.BotonEspera);
                 }
                 
-                Usuario usuario = await new UsuarioMap().ReadAsync(txtUsuario.Text);
+                Usuario usuario = await UsuarioMap.ReadAsync(txtUsuario.Text);
 
                 if (usuario == null || !usuario.password.Equals(txtPassword.Text))
                 {
@@ -41,13 +68,17 @@ namespace NDEV_HAPPY_INN
 
                 if (chkMantenerSesion.Checked)
                 {
-                    // aqui hacemos la cookie, pero no me acuerdo como hacerla asi que la dejo para after
+                    Response.Cookies.Add(new HttpCookie(NAME_COOKIE_RECORDAR_USUARIO, usuario.nick)
+                    {
+                        Expires = DateTime.Now.AddYears(1)
+                    });
                 }
 
                 // establecemos la variable global del UsuarioLogeado [obtiene el usuario guardado en Session]
                 UsuarioLogeado = usuario;
 
                 FormsAuthentication.RedirectFromLoginPage(usuario.nick, chkMantenerSesion.Checked);
+                Response.Redirect(UrlDefault);
             }
             catch (Exception ex)
             {
@@ -72,6 +103,41 @@ namespace NDEV_HAPPY_INN
                 message = "Ingrese la contraseña";
                 return false;
             }
+
+            return true;
+        }
+
+        protected bool TestConnectionCassandra(ref string message)
+        {
+            try
+            {
+                Connection connection = new Connection();
+
+                return true;
+            }
+            catch (ConnectionCassandraException ex)
+            {
+                message = $"No se ha podido conectar a cassandra: {ex.Message}".Replace("'", "\"");
+                return false;
+            }
+        }
+
+        protected bool UsuarioRecordadoDeCookie(ref Usuario usuario)
+        {
+            var cookieUsuario = Request.Cookies.Get(NAME_COOKIE_RECORDAR_USUARIO);
+
+            if (cookieUsuario == null)
+                return false;
+
+            if (string.IsNullOrEmpty(cookieUsuario.Value))
+                return false;
+
+            Usuario usuarioObtenido = UsuarioMap.Read(cookieUsuario.Value);
+
+            if (usuarioObtenido == null)
+                return false;
+
+            usuario = usuarioObtenido;
 
             return true;
         }
